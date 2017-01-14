@@ -10,6 +10,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class FurloughSystem {
+	//test commit
 
 	public static void main(String[] args) throws IOException {
 		showTheMenu();
@@ -38,7 +39,7 @@ public class FurloughSystem {
 	}
 
 	private static void inputTheNameOfTheWantedPerson(Scanner scanner) throws IOException, FileNotFoundException {
-		System.out.println("Въведете име на служител");
+		System.out.println("Г‚ГєГўГҐГ¤ГҐГІГҐ ГЁГ¬ГҐ Г­Г  Г±Г«ГіГ¦ГЁГІГҐГ«");
 		String inputtedName = scanner.nextLine();
 		int counter = countsTheLinesInTheFile();
 		// System.out.println(counter);
@@ -61,64 +62,64 @@ public class FurloughSystem {
 
 	private static void showTheMenu() {
 		System.out.println("----------------------------");
-		System.out.println("1. Заяви отпуска");
-		System.out.println("2. Виж всички отпуски");
-		System.out.println("3. Виж отпуска на служител");
-		System.out.println("4. Промени статус на отпуска");
-		System.out.println("5. Изход");
+		System.out.println("1. Г‡Г ГїГўГЁ Г®ГІГЇГіГ±ГЄГ ");
+		System.out.println("2. Г‚ГЁГ¦ ГўГ±ГЁГ·ГЄГЁ Г®ГІГЇГіГ±ГЄГЁ");
+		System.out.println("3. Г‚ГЁГ¦ Г®ГІГЇГіГ±ГЄГ  Г­Г  Г±Г«ГіГ¦ГЁГІГҐГ«");
+		System.out.println("4. ГЏГ°Г®Г¬ГҐГ­ГЁ Г±ГІГ ГІГіГ± Г­Г  Г®ГІГЇГіГ±ГЄГ ");
+		System.out.println("5. Г€Г§ГµГ®Г¤");
 		System.out.println("----------------------------");
 	}
 
 	private static String chooseAnOptionFromTheMenu(Scanner scanner) {
-		System.out.println("Въведи избор: ");
+		System.out.println("Г‚ГєГўГҐГ¤ГЁ ГЁГ§ГЎГ®Г°: ");
 		String choice = scanner.nextLine();
 		while ((!Pattern.matches("1", choice)) && (!Pattern.matches("2", choice)) && (!Pattern.matches("3", choice))
 				&& (!Pattern.matches("4", choice)) && (!Pattern.matches("5", choice))) {
-			System.out.println("Въведеният от Вас номер на опция е некоректен! Моля, въведете го отново.");
+			System.out.println("Г‚ГєГўГҐГ¤ГҐГ­ГЁГїГІ Г®ГІ Г‚Г Г± Г­Г®Г¬ГҐГ° Г­Г  Г®ГЇГ¶ГЁГї ГҐ Г­ГҐГЄГ®Г°ГҐГЄГІГҐГ­! ГЊГ®Г«Гї, ГўГєГўГҐГ¤ГҐГІГҐ ГЈГ® Г®ГІГ­Г®ГўГ®.");
 			choice = scanner.nextLine();
 		}
 		return choice;
 	}
 
 	private static void inputUserName(Scanner scanner) throws FileNotFoundException {
-		System.out.println("Въведете името си: ");
+		System.out.println("Г‚ГєГўГҐГ¤ГҐГІГҐ ГЁГ¬ГҐГІГ® Г±ГЁ: ");
 		String name = scanner.nextLine();
-		while (!Pattern.matches(".*[А-Яа-я]+.*[А-Яа-я]", name)) {
-			System.out.println("Въведеното от Вас име е некоректно. Моля, впишете ново име.");
+		while (!Pattern.matches(".*[ГЂ-ГџГ -Гї]+.*[ГЂ-ГџГ -Гї]", name)) {
+			System.out.println("Г‚ГєГўГҐГ¤ГҐГ­Г®ГІГ® Г®ГІ Г‚Г Г± ГЁГ¬ГҐ ГҐ Г­ГҐГЄГ®Г°ГҐГЄГІГ­Г®. ГЊГ®Г«Гї, ГўГЇГЁГёГҐГІГҐ Г­Г®ГўГ® ГЁГ¬ГҐ.");
 			name = scanner.nextLine();
 		}
 		writeDownTheInputtedInformationInAFile(name);
 	}
 
 	private static void inputUserEmail(Scanner scanner) throws FileNotFoundException {
-		System.out.println("Въведете имейла си: ");
+		System.out.println("Г‚ГєГўГҐГ¤ГҐГІГҐ ГЁГ¬ГҐГ©Г«Г  Г±ГЁ: ");
 		String email = scanner.nextLine();
 		while ((email.indexOf("@gmail.com") == -1) && (email.indexOf("@abv.bg") == -1)
 				&& (email.indexOf("@yahoo.com") == -1) && (email.indexOf("@mail.bg") == -1)) {
-			System.out.println("Въведеният от вас имейл е некоректен. Моля, въведете го отново!");
+			System.out.println("Г‚ГєГўГҐГ¤ГҐГ­ГЁГїГІ Г®ГІ ГўГ Г± ГЁГ¬ГҐГ©Г« ГҐ Г­ГҐГЄГ®Г°ГҐГЄГІГҐГ­. ГЊГ®Г«Гї, ГўГєГўГҐГ¤ГҐГІГҐ ГЈГ® Г®ГІГ­Г®ГўГ®!");
 			email = scanner.nextLine();
 		}
 		writeDownTheInputtedInformationInAFile(email);
 	}
 
 	private static void inputUserEGN(Scanner scanner) throws FileNotFoundException {
-		System.out.println("Въведете единния си граждански номер: ");
+		System.out.println("Г‚ГєГўГҐГ¤ГҐГІГҐ ГҐГ¤ГЁГ­Г­ГЁГї Г±ГЁ ГЈГ°Г Г¦Г¤Г Г­Г±ГЄГЁ Г­Г®Г¬ГҐГ°: ");
 		String egn = scanner.nextLine();
 		int length = egn.length();
 		while (!Pattern.matches(".*[0-9]+.*[0-9]", egn) && (length != 10)) {
 			System.out.println(
-					"Въведеният от Вас единен граждански номер е некоректен. Моля, впишете нов единен граждански номер.");
+					"Г‚ГєГўГҐГ¤ГҐГ­ГЁГїГІ Г®ГІ Г‚Г Г± ГҐГ¤ГЁГ­ГҐГ­ ГЈГ°Г Г¦Г¤Г Г­Г±ГЄГЁ Г­Г®Г¬ГҐГ° ГҐ Г­ГҐГЄГ®Г°ГҐГЄГІГҐГ­. ГЊГ®Г«Гї, ГўГЇГЁГёГҐГІГҐ Г­Г®Гў ГҐГ¤ГЁГ­ГҐГ­ ГЈГ°Г Г¦Г¤Г Г­Г±ГЄГЁ Г­Г®Г¬ГҐГ°.");
 			egn = scanner.nextLine();
 		}
 		writeDownTheInputtedInformationInAFile(egn);
 	}
 
 	private static void inputInitialDataOfTheFurlough(Scanner scanner) throws FileNotFoundException {
-		System.out.println("Въведете начална дата за Вашата отпуска: ");
+		System.out.println("Г‚ГєГўГҐГ¤ГҐГІГҐ Г­Г Г·Г Г«Г­Г  Г¤Г ГІГ  Г§Г  Г‚Г ГёГ ГІГ  Г®ГІГЇГіГ±ГЄГ : ");
 		String initialData = scanner.nextLine();
 		while (!Pattern.matches(".*[0-9]+.*[0-9]", initialData)) {
 			System.out.println(
-					"Въведената от Вас начална дата на Вашата отпуска е некоректна. Моля, впишете нова начална дата на Вашата отпуска.");
+					"Г‚ГєГўГҐГ¤ГҐГ­Г ГІГ  Г®ГІ Г‚Г Г± Г­Г Г·Г Г«Г­Г  Г¤Г ГІГ  Г­Г  Г‚Г ГёГ ГІГ  Г®ГІГЇГіГ±ГЄГ  ГҐ Г­ГҐГЄГ®Г°ГҐГЄГІГ­Г . ГЊГ®Г«Гї, ГўГЇГЁГёГҐГІГҐ Г­Г®ГўГ  Г­Г Г·Г Г«Г­Г  Г¤Г ГІГ  Г­Г  Г‚Г ГёГ ГІГ  Г®ГІГЇГіГ±ГЄГ .");
 			initialData = scanner.nextLine();
 		}
 		writeDownTheInputtedInformationInAFile(initialData);
@@ -126,21 +127,21 @@ public class FurloughSystem {
 	}
 
 	private static void inputFinalDataOfTheFurlough(Scanner scanner) {
-		System.out.println("Въведете крайна дата за Вашата отпуска: ");
+		System.out.println("Г‚ГєГўГҐГ¤ГҐГІГҐ ГЄГ°Г Г©Г­Г  Г¤Г ГІГ  Г§Г  Г‚Г ГёГ ГІГ  Г®ГІГЇГіГ±ГЄГ : ");
 		String finalData = scanner.nextLine();
 		while (!Pattern.matches(".*[0-9]+.*[0-9]", finalData)) {
 			System.out.println(
-					"Въведената от Вас крайна дата на Вашата отпуска е некоректна. Моля, впишете нова крайна дата на Вашата отпуска.");
+					"Г‚ГєГўГҐГ¤ГҐГ­Г ГІГ  Г®ГІ Г‚Г Г± ГЄГ°Г Г©Г­Г  Г¤Г ГІГ  Г­Г  Г‚Г ГёГ ГІГ  Г®ГІГЇГіГ±ГЄГ  ГҐ Г­ГҐГЄГ®Г°ГҐГЄГІГ­Г . ГЊГ®Г«Гї, ГўГЇГЁГёГҐГІГҐ Г­Г®ГўГ  ГЄГ°Г Г©Г­Г  Г¤Г ГІГ  Г­Г  Г‚Г ГёГ ГІГ  Г®ГІГЇГіГ±ГЄГ .");
 			finalData = scanner.nextLine();
 		}
 		writeDownTheInputtedInformationInAFile(finalData);
 	}
 
 	private static void inputTypeOfTheFurlough(Scanner scanner) throws FileNotFoundException {
-		System.out.println("Задайте тип на исканата от Вас отпуска (платена / неплатена)");
+		System.out.println("Г‡Г Г¤Г Г©ГІГҐ ГІГЁГЇ Г­Г  ГЁГ±ГЄГ Г­Г ГІГ  Г®ГІ Г‚Г Г± Г®ГІГЇГіГ±ГЄГ  (ГЇГ«Г ГІГҐГ­Г  / Г­ГҐГЇГ«Г ГІГҐГ­Г )");
 		String typeOfTheFurlough = scanner.nextLine();
-		while ((!Pattern.matches("платена", typeOfTheFurlough)) && (!Pattern.matches("неплатена", typeOfTheFurlough))) {
-			System.out.println("Въведеният от Вас тип на отпуската е некоректен. Моля, впишете нов тип.");
+		while ((!Pattern.matches("ГЇГ«Г ГІГҐГ­Г ", typeOfTheFurlough)) && (!Pattern.matches("Г­ГҐГЇГ«Г ГІГҐГ­Г ", typeOfTheFurlough))) {
+			System.out.println("Г‚ГєГўГҐГ¤ГҐГ­ГЁГїГІ Г®ГІ Г‚Г Г± ГІГЁГЇ Г­Г  Г®ГІГЇГіГ±ГЄГ ГІГ  ГҐ Г­ГҐГЄГ®Г°ГҐГЄГІГҐГ­. ГЊГ®Г«Гї, ГўГЇГЁГёГҐГІГҐ Г­Г®Гў ГІГЁГЇ.");
 			typeOfTheFurlough = scanner.nextLine();
 		}
 		writeDownTheInputtedInformationInAFile(typeOfTheFurlough);
@@ -191,8 +192,8 @@ public class FurloughSystem {
 	}
 
 	private static void displayTheDataInATableFormat(int numberOfTheLinesInTheFile, String[] dataOfTheFile) {
-		System.out.format("%5s%30s%30s%50s%45s%40s", "Име", "Имейл", "ЕГН", "Начална дата на оптуската",
-				"Крайна дата на отпуската", "Тип на отпуската");
+		System.out.format("%5s%30s%30s%50s%45s%40s", "Г€Г¬ГҐ", "Г€Г¬ГҐГ©Г«", "Г…ГѓГЌ", "ГЌГ Г·Г Г«Г­Г  Г¤Г ГІГ  Г­Г  Г®ГЇГІГіГ±ГЄГ ГІГ ",
+				"ГЉГ°Г Г©Г­Г  Г¤Г ГІГ  Г­Г  Г®ГІГЇГіГ±ГЄГ ГІГ ", "Г’ГЁГЇ Г­Г  Г®ГІГЇГіГ±ГЄГ ГІГ ");
 		System.out.println();
 		for (int i = 0; i < numberOfTheLinesInTheFile; i += 6) {
 			String name = dataOfTheFile[i];
