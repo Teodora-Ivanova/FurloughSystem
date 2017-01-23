@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -13,26 +14,28 @@ public class FurloughSystem {
 	public static void main(String[] args) throws IOException {
 		showTheMenu();
 		Scanner scanner = new Scanner(System.in);
-		String choice = chooseAnOptionFromTheMenu(scanner);
+		int choice = chooseAnOptionFromTheMenu(scanner);
 		switch (choice) {
-		case "1":
-			// writeDownTheInputtedInformationInAFile(choice);
+		case 1:
 			inputUserName(scanner);
 			inputUserEmail(scanner);
 			inputUserEGN(scanner);
-			inputInitialDataOfTheFurlough(scanner);
-			inputFinalDataOfTheFurlough(scanner);
+			inputInitialDateOfTheFurlough(scanner);
+			inputFinalDateOfTheFurlough(scanner);
 			inputTypeOfTheFurlough(scanner);
 			break;
-		case "2":
+		case 2:
 			int numberOfTheLinesInTheFile = countsTheLinesInTheFile();
-			// System.out.println(numberOfTheLinesInTheFile);
 			String[] readTheDataFromTheFile = readArray(numberOfTheLinesInTheFile);
-			// System.out.println(Arrays.toString(readTheDataFromTheFile));
 			displayTheDataInATableFormat(numberOfTheLinesInTheFile, readTheDataFromTheFile);
 			break;
-		case "3":
+		case 3:
 			inputTheNameOfTheWantedPerson(scanner);
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
 		}
 	}
 
@@ -46,13 +49,17 @@ public class FurloughSystem {
 		System.out.println("----------------------------");
 	}
 
-	private static String chooseAnOptionFromTheMenu(Scanner scanner) {
+	private static int chooseAnOptionFromTheMenu(Scanner scanner) {
 		System.out.println("Въведи избор: ");
-		String choice = scanner.nextLine();
-		while ((!Pattern.matches("1", choice)) && (!Pattern.matches("2", choice)) && (!Pattern.matches("3", choice))
-				&& (!Pattern.matches("4", choice)) && (!Pattern.matches("5", choice))) {
+		int choice = scanner.nextInt();
+		choice = checkIfTheChosenOptionIsCorrect(scanner, choice);
+		return choice;
+	}
+
+	private static int checkIfTheChosenOptionIsCorrect(Scanner scanner, int choice) {
+		while (choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != 5) {
 			System.out.println("Въведеният от Вас номер на опция е некоректен! Моля, въведете го отново.");
-			choice = scanner.nextLine();
+			choice = scanner.nextInt();
 		}
 		return choice;
 	}
@@ -60,6 +67,7 @@ public class FurloughSystem {
 	private static void inputUserName(Scanner scanner) throws FileNotFoundException {
 		System.out.println("Въведете името си: ");
 		String name = scanner.nextLine();
+		name = scanner.nextLine();
 		name = checkIfTheNameIsCorrect(scanner, name);
 		writeDownTheInputtedInformationInAFile(name);
 	}
@@ -91,13 +99,13 @@ public class FurloughSystem {
 	private static void inputUserEGN(Scanner scanner) throws FileNotFoundException {
 		System.out.println("Въведете единния си граждански номер: ");
 		String egn = scanner.nextLine();
-		int length = egn.length();
-		egn = checkIfTheEGNIsCorrect(scanner, egn, length);
+
+		egn = checkIfTheEGNIsCorrect(scanner, egn);
 		writeDownTheInputtedInformationInAFile(egn);
 	}
 
-	private static String checkIfTheEGNIsCorrect(Scanner scanner, String egn, int length) {
-		while (!Pattern.matches(".*[0-9]+.*[0-9]", egn) && (length != 10)) {
+	private static String checkIfTheEGNIsCorrect(Scanner scanner, String egn) {
+		while (!Pattern.matches("[0-9]{10}", egn)) {
 			System.out.println(
 					"Въведеният от Вас единен граждански номер е некоректен. Моля, впишете нов единен граждански номер.");
 			egn = scanner.nextLine();
@@ -105,37 +113,37 @@ public class FurloughSystem {
 		return egn;
 	}
 
-	private static void inputInitialDataOfTheFurlough(Scanner scanner) throws FileNotFoundException {
-		System.out.println("Въведете начална дата за Вашата отпуска: ");
-		String initialData = scanner.nextLine();
-		initialData = checkIfTheInitialDataIsCorrect(scanner, initialData);
-		writeDownTheInputtedInformationInAFile(initialData);
+	private static void inputInitialDateOfTheFurlough(Scanner scanner) throws FileNotFoundException {
+		System.out.println("Въведете начална дата за Вашата отпуска (формат: дд/мм/гггг): ");
+		String initialDate = scanner.nextLine();
+		initialDate = checkIfTheInitialDateIsCorrect(scanner, initialDate);
+		writeDownTheInputtedInformationInAFile(initialDate);
 
 	}
 
-	private static String checkIfTheInitialDataIsCorrect(Scanner scanner, String initialData) {
-		while (!Pattern.matches(".*[0-9]+.*[0-9]", initialData)) {
+	private static String checkIfTheInitialDateIsCorrect(Scanner scanner, String initialDate) {
+		while (!Pattern.matches("([0-9]{2})/([0-9]{2})/([0-9]{4})", initialDate)) {
 			System.out.println(
 					"Въведената от Вас начална дата на Вашата отпуска е некоректна. Моля, впишете нова начална дата на Вашата отпуска.");
-			initialData = scanner.nextLine();
+			initialDate = scanner.nextLine();
 		}
-		return initialData;
+		return initialDate;
 	}
 
-	private static void inputFinalDataOfTheFurlough(Scanner scanner) {
-		System.out.println("Въведете крайна дата за Вашата отпуска: ");
-		String finalData = scanner.nextLine();
-		finalData = checkIfTheFinalDataIsCorrect(scanner, finalData);
-		writeDownTheInputtedInformationInAFile(finalData);
+	private static void inputFinalDateOfTheFurlough(Scanner scanner) {
+		System.out.println("Въведете крайна дата за Вашата отпуска (формат: дд/мм/гггг): ");
+		String finalDate = scanner.nextLine();
+		finalDate = checkIfTheFinalDateIsCorrect(scanner, finalDate);
+		writeDownTheInputtedInformationInAFile(finalDate);
 	}
 
-	private static String checkIfTheFinalDataIsCorrect(Scanner scanner, String finalData) {
-		while (!Pattern.matches(".*[0-9]+.*[0-9]", finalData)) {
+	private static String checkIfTheFinalDateIsCorrect(Scanner scanner, String finalDate) {
+		while (!Pattern.matches("([0-9]{2})/([0-9]{2})/([0-9]{4})", finalDate)) {
 			System.out.println(
 					"Въведената от Вас крайна дата на Вашата отпуска е некоректна. Моля, впишете нова крайна дата на Вашата отпуска.");
-			finalData = scanner.nextLine();
+			finalDate = scanner.nextLine();
 		}
-		return finalData;
+		return finalDate;
 	}
 
 	private static void inputTypeOfTheFurlough(Scanner scanner) throws FileNotFoundException {
@@ -217,20 +225,20 @@ public class FurloughSystem {
 	private static void inputTheNameOfTheWantedPerson(Scanner scanner) throws IOException, FileNotFoundException {
 		System.out.println("Въведете име на служител");
 		String inputtedName = scanner.nextLine();
+		inputtedName = scanner.nextLine();
+		inputtedName = checkIfTheNameIsCorrect(scanner, inputtedName);
 		int numberOfTheLinesInTheFile = countsTheLinesInTheFile();
-		// System.out.println(counter);
 		String[] readTheDataFromTheFile = readArray(numberOfTheLinesInTheFile);
-		// System.out.println(Arrays.toString(reading));
 		for (int i = 0; i < numberOfTheLinesInTheFile; i += 6) {
 			if (inputtedName.equals(readTheDataFromTheFile[i])) {
-				String name2 = readTheDataFromTheFile[i];
-				String email2 = readTheDataFromTheFile[i + 1];
-				String egn2 = readTheDataFromTheFile[i + 2];
-				String initialDataOfTheFurlough2 = readTheDataFromTheFile[i + 3];
-				String finalDataOfTheFurlough2 = readTheDataFromTheFile[i + 4];
-				String typeOfTheFurlough2 = readTheDataFromTheFile[i + 5];
-				System.out.format("%1s%35s%27s%37s%47s%43s", name2, email2, egn2, initialDataOfTheFurlough2,
-						finalDataOfTheFurlough2, typeOfTheFurlough2);
+				String name = readTheDataFromTheFile[i];
+				String email = readTheDataFromTheFile[i + 1];
+				String egn = readTheDataFromTheFile[i + 2];
+				String initialDatеOfTheFurlough = readTheDataFromTheFile[i + 3];
+				String finalDatеOfTheFurlough = readTheDataFromTheFile[i + 4];
+				String typeOfTheFurlough = readTheDataFromTheFile[i + 5];
+				System.out.format("%1s%35s%27s%37s%47s%43s", name, email, egn, initialDatеOfTheFurlough,
+						finalDatеOfTheFurlough, typeOfTheFurlough);
 				System.out.println();
 			}
 		}
