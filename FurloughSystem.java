@@ -49,29 +49,28 @@ public class FurloughSystem {
 		case 1:
 			inputUserName(scanner);
 			inputUserEmail(scanner);
-			inputUserEGN(scanner);
+			inputUserPIN(scanner);
 			inputInitialDateOfTheFurlough(scanner);
 			inputFinalDateOfTheFurlough(scanner);
 			inputTypeOfTheFurlough(scanner);
-			showDifferentInformationAccordingToTheChosenOption(scanner,chooseAnOptionFromTheMenu(scanner));
+			System.out.println();
+			showDifferentInformationAccordingToTheChosenOption(scanner, chooseAnOptionFromTheMenu(scanner));
 			break;
 		case 2:
 			int numberOfTheLinesInTheFile = countsTheLinesInTheFile();
 			String[] readTheDataFromTheFile = readArray(numberOfTheLinesInTheFile);
 			displayTheDataInATableFormat(numberOfTheLinesInTheFile, readTheDataFromTheFile);
 			System.out.println();
-			showDifferentInformationAccordingToTheChosenOption(scanner,chooseAnOptionFromTheMenu(scanner));
+			showDifferentInformationAccordingToTheChosenOption(scanner, chooseAnOptionFromTheMenu(scanner));
 			break;
-
 		case 3:
 			inputTheNameOfTheWantedPersonAndShowsTheInfoOfTheirApplication(scanner);
 			System.out.println();
-			showDifferentInformationAccordingToTheChosenOption(scanner,chooseAnOptionFromTheMenu(scanner));
-			System.out.println();
+			showDifferentInformationAccordingToTheChosenOption(scanner, chooseAnOptionFromTheMenu(scanner));
 			break;
 		case 4:
 			System.out.println("Съжаляваме за неудобството, но услугата е все още недостъпна.\n");
-			showDifferentInformationAccordingToTheChosenOption(scanner,chooseAnOptionFromTheMenu(scanner));
+			showDifferentInformationAccordingToTheChosenOption(scanner, chooseAnOptionFromTheMenu(scanner));
 			break;
 		case 5:
 			System.out.println("Благодарим Ви за подадената заявка за отпуска.");
@@ -111,20 +110,20 @@ public class FurloughSystem {
 		return email;
 	}
 
-	public static void inputUserEGN(Scanner scanner) throws FileNotFoundException {
+	public static void inputUserPIN(Scanner scanner) throws FileNotFoundException {
 		System.out.println("Въведете единния си граждански номер: ");
-		String egn = scanner.nextLine();
-		egn = checkIfTheEGNIsCorrect(scanner, egn);
-		writeDownTheInputtedInformationInAFile(egn);
+		String pin = scanner.nextLine();
+		pin = checkIfThePINIsCorrect(scanner, pin);
+		writeDownTheInputtedInformationInAFile(pin);
 	}
 
-	public static String checkIfTheEGNIsCorrect(Scanner scanner, String egn) {
-		while (!Pattern.matches("[0-9]{10}", egn)) {
+	public static String checkIfThePINIsCorrect(Scanner scanner, String pin) {
+		while (!Pattern.matches("[0-9]{10}", pin)) {
 			System.out.println(
 					"Въведеният от Вас единен граждански номер е некоректен. Моля, впишете нов единен граждански номер.");
-			egn = scanner.nextLine();
+			pin = scanner.nextLine();
 		}
-		return egn;
+		return pin;
 	}
 
 	public static void inputInitialDateOfTheFurlough(Scanner scanner) throws FileNotFoundException {
